@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - Official Store</title>
+  <!-- Include Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Add your custom styles here */
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('eco2.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      margin: 0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .product img {
+      width: 270px;
+      height: 270px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s;
+    }
+    .product img:hover {
+      transform: scale(1.05);
+    }
+    .cart {
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      max-width: 300px;
+      padding: 10px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-3"><b>CART DETAILS</b></h1>
+    <div class="product mt-4">
+      <H2 style="color:green"><B>YOGA MATS</B></H2>
+      <img src="e1.jpg" alt="Mobile Cover" class="img-fluid">
+      <br><br>
+      <p class="price"><del>Rs.850</del> <b>Rs.7S0</b></p>
+      <div class="input-group mb-3">
+        <input type="number" id="quantity1" class="form-control" placeholder="Quantity">
+        <button class="btn btn-primary" onclick="addToCart(1)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="actions mt-4">
+      <a href="index.html" class="btn btn-success">Continue Shopping</a>
+
+      <!-- Add the Buy Now button here -->
+      <a herf="register.html"><button class="btn btn-success" onclick="buyNow()">Buy Now</button></a>
+    </div>
+  </div>
+  <div class="cart">
+    <h4>Your Cart</h4>
+    <ul id="cart-items">
+    </ul>
+
+    <!-- Display the Cart Total -->
+    <p><strong>Cart Total: <span id="cart-total">Rs.0.00</span></strong></p>
+  </div>
+  <script>
+    // Initialize cart total
+    let cartTotal = 0;
+
+    function addToCart(productId) {
+      const productName = 'MOBILE COVERS ' + productId;
+      const quantity = document.getElementById('quantity' + productId).value;
+      const price = productId === 1 ? 200 : 750;
+      const total = quantity * price;
+
+      const cartItems = document.getElementById('cart-items');
+      const newItem = document.createElement('li');
+      newItem.innerHTML = `${productName} x${quantity} - Rs.${total.toFixed(2)}`;
+      cartItems.appendChild(newItem);
+
+      // Update cart total
+      cartTotal += total;
+      document.getElementById('cart-total').textContent = 'Rs.' + cartTotal.toFixed(2);
+    }
+
+    // Buy Now function
+    function buyNow() {
+      // You can use the cartTotal variable here for the total price
+      alert('Buy Now clicked! Total: Rs.' + cartTotal.toFixed(2));
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration Form</title>
+<link rel="stylesheet" href="registeration.css" />
+<script>
+  function toggleBankDetails() {
+    var paymentMethod = document.getElementById("paymentMethod");
+    var bankDetails = document.getElementById("bankDetails");
+    
+    if (paymentMethod.value === "bank") {
+      bankDetails.style.display = "block";
+    } else {
+      bankDetails.style.display = "none";
+    }
+  }
+</script>
+</head>
+<body>
+<h1>Confirmation Order</h1>
+<form action="http://localhost:7002/sign_up" method="post">
+<label>First Name: <input type="text" name="fname" required /></label>
+<label>Last Name: <input type="text" name="lname" required /></label>
+<label>Email: <input type="email" name="email" required /></label>
+<label>Products Name: <input type="text" name="Pro" required /></label>
+<label>Products Quantity: <input type="number" name="qua" required /></label>
+<label>Phone Number: <input type="text" name="phn" minlength="10" required /></label>
+<label>Address: <textarea name="add" rows="3" cols="30"></textarea></label>
+<label>Payment Method:
+  <select name="paym" id="paymentMethod" onchange="toggleBankDetails()">
+    <option value="bank">Bank Details</option>
+    <option value="cash">Cash on Delivery</option>
+  </select>
+</label>
+<div id="bankDetails" style="display: none;">
+  <label>Bank Name: <input type="text" name="Banknm" /></label>
+  <label>Account Number: <input type="text" name="Accnt" /></label>
+  <label>IFSC Number: <input type="text" name="Ifsc" /></label>
+</div>
+<input type="submit" value="Order"/>
+</form>
+</body>
+</html>
